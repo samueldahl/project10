@@ -1,0 +1,73 @@
+
+<div class ="container">
+  <mat-card *ngIf="!(auth.user | async)" class="authentication-card">
+    <mat-tab-group>
+      <mat-tab label="Sign up">
+        <div class="input-container" fxLayout="column">
+          <mat-form-field>
+            <input [(ngModel)]="uName" [formControl]="uNameCtrl" matInput placeholder="User Name" >
+            <mat-error *ngIf="uNameCtrl.hasError('required')">
+              Please enter a user name
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input [(ngModel)]="uEmail" [formControl]="uEmailCtrl" matInput placeholder="Email" >
+            <mat-error *ngIf="uEmailCtrl.hasError('required')">
+              Please enter a valid email
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input ng-hide="showpassword" type="password" [(ngModel)]="uPassword" [formControl]="uPasswordCtrl" matInput placeholder="Password" (keyup.enter)="signUp()" >
+            <mat-error *ngIf="uPasswordCtrl.hasError('required')">
+              Please enter a password
+            </mat-error>
+          </mat-form-field>
+          <button color="primary" mat-raised-button (click)="signUp()">Sign Up</button>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Login">
+        <div class="input-container" fxLayout="column">
+
+          <mat-form-field>
+            <input [(ngModel)]="iEmail" [formControl]="iEmailCtrl" matInput placeholder="Email" >
+            <mat-error *ngIf="iEmailCtrl.hasError('required')">
+              Please enter your email address
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input ng-hide="showpassword" type="password" [(ngModel)]="iPassword" [formControl]="iPasswordCtrl" matInput placeholder="Password" (keyup.enter)="signIn()" >
+            <mat-error *ngIf="iPasswordCtrl.hasError('required')">
+              Please enter your password
+            </mat-error>
+          </mat-form-field>
+          <button color="primary" mat-raised-button (click)="signIn()">Sign In</button>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    <mat-card-actions>
+      <button class="google-btn" color="warn" mat-raised-button (click)="auth.googleLogin()">Sign in/up with Google</button>
+      <button mat-raised-button color="primary" matTooltip="help" (click)="openHelpDialog()"><mat-icon color="secondary">help</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card *ngIf="auth.user | async as user" class="user-display-card">
+    <mat-card-title>
+      Hello {{user.displayName}}!
+    </mat-card-title>
+    <mat-card-subtitle>
+      You've posted {{user.numOfRecipesPosted == 1 ? user.numOfRecipesPosted + " Recipe" : user.numOfRecipesPosted + " Recipes"}}
+      <button mat-flat-button color="secondary" (click)="openUserRecipesDialog()" matTooltip="View recipes you've posted">View</button>
+    </mat-card-subtitle>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="auth.signOut()">Logout</button>
+      <button mat-raised-button color="primary" matTooltip="help" (click)="openHelpDialog()"><mat-icon color="secondary">help</mat-icon></button>
+    </mat-card-actions>
+
+  </mat-card>
+
+</div>
+
+

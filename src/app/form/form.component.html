@@ -1,0 +1,77 @@
+<div class="background">
+  <mat-card>
+
+    <div class="example-container">
+
+      <mat-form-field>
+        <input [formControl]="recipeNameCtrl" matInput placeholder="Recipe Name">
+        <mat-error *ngIf="recipeNameCtrl.hasError('required')">
+          Please enter a recipe name
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input [formControl]="photoURLCtrl" matInput placeholder="Photo URL">
+        <mat-error *ngIf="photoURLCtrl.hasError('required')">
+          Please enter a recipe photo
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input  [formControl]="authorNameCtrl" matInput placeholder="Author">
+        <mat-error *ngIf="authorNameCtrl.hasError('required')">
+          Please enter a recipe Author
+        </mat-error>
+      </mat-form-field>
+
+      <div class="ingredient-input">
+        <mat-form-field>
+          <input [formControl]="ingredientNameCtrl" matInput placeholder="Ingredient" (keyup.enter)="addItem()">
+
+          <mat-error *ngIf="ingredientNameCtrl.hasError('required') && ingredients.length == 0">
+            Please add at least one ingredient
+
+          </mat-error>
+        </mat-form-field>
+        <mat-icon color="primary" (click)="addItem()">add_circle</mat-icon>
+
+      </div>
+
+
+
+
+      <div class="inputButton">
+        <mat-list>
+          <mat-list-item *ngFor="let ingredient of ingredientNames; let i = index">
+            <div class="list-item-container">
+              {{ingredient}}
+              <mat-icon color="primary" (click)="removeItem(i)">
+                remove_circle
+              </mat-icon>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+      <mat-form-field>
+        <input [formControl]="cookingDirectionsCtrl" matInput
+               placeholder="Cooking Directions">
+        <mat-error *ngIf="cookingDirectionsCtrl.hasError('required')">
+          Please add cooking directions
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input [formControl]="detailsCtrl" matInput
+               placeholder="Description">
+        <mat-error *ngIf="detailsCtrl.hasError('required')">
+          Please add a short description of the recipe
+        </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="pushRecipe()">Submit</button>
+    </div>
+
+  </mat-card>
+</div>
+

@@ -1,0 +1,17 @@
+
+<mat-toolbar color="primary">
+  <div class="buttons">
+    <span routerLink="/welcome">Home</span>
+    <span routerLink="/recipes">Recipes</span>
+    <span *ngIf="auth.user | async as user" routerLink="/add">Add</span>
+  </div>
+  <span class="end">
+    <button mat-raised-button *ngIf="auth.user | async as user" matTooltip="Sign Out" color="primary" (click)="auth.signOut()">Logout</button>
+  </span>
+
+</mat-toolbar>
+
+ <div class="main-wrapper" [@routerTransition]="getState(o)">
+  <router-outlet #o="outlet" ></router-outlet>
+ </div>
+

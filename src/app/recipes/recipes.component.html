@@ -1,0 +1,47 @@
+<div class="main-wrapper">
+  <mat-card class="input-card">
+    <mat-form-field>
+      <input matInput [(ngModel)]="filterBy" placeholder="Search for a recipe">
+    </mat-form-field>
+  </mat-card>
+
+  <button mat-fab *ngIf="deletedRecipes.length > 0" color="primary" (click)="undoDelete()" matTooltip="Undo Delete" class="undo-button">
+    <mat-icon>undo</mat-icon>
+  </button>
+
+  <div [@listAnimation]="recipeObjects" class="recipe-card-container">
+    <!--<div>-->
+      <!--<div *ngFor="let recipeObject of (recipeObjects | filter:filterBy)">-->
+        <mat-card *ngFor="let recipe of recipeObjects | filter:filterBy" class="recipe-card">
+
+            <mat-card-title>
+            <span class="card-title-click" [routerLink]="['/details', recipe.id]">
+              {{recipe.recipeName}}
+            </span>
+
+              <span>
+              <span *ngIf="auth.user | async as user" class="icon-container" (click)="increaseFlag(recipe.id)">
+                <mat-icon matTooltip="Flag as inappropriate">flag</mat-icon>
+              </span>
+              <ng-container *ngIf="auth.user | async as user">
+                <mat-icon *ngIf="user.email === recipe.recipePoster || (recipe.flagRating > 1 && recipe.flagRating)"
+                          class="delete-button"
+                          (click)="deleteRecipe(recipe.id, $event)" matTooltip="Delete this recipe">delete</mat-icon>
+              </ng-container>
+            </span>
+            </mat-card-title>
+
+
+
+            <img mat-card-image [src]="recipe.photoURL" [routerLink]="['/details', recipe.id]">
+
+          <mat-card-footer>
+            <p [routerLink]="['/details', recipe.id]">{{recipe.description}}</p>
+          </mat-card-footer>
+
+        </mat-card>
+
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+</div>

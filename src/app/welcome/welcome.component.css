@@ -1,0 +1,75 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url("../../assets/images/food1.png");
+  background-size: cover;
+
+}
+
+button{
+  height: 35px;
+  margin: auto;
+  display: block;
+}
+
+mat-card{
+
+}
+
+mat-tab{
+  overflow-y: hidden;
+}
+
+mat-tab-body{
+  overflow-y: hidden;
+}
+
+.google-btn{
+  justify-self: flex-end;
+  align-self: flex-end;
+}
+
+.input-container{
+  overflow-y: hidden;
+}
+.authentication-card{
+  height: 400px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+.user-display-card{
+  padding: 50px;
+}
+mat-tab-group{
+  height: 88%;
+}
+
+mat-card-actions{
+  justify-self: flex-end;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+@media(max-width: 655px){
+  /*mat-card{*/
+    /*width: 95%;*/
+    /*padding: 24px 5%;*/
+  /*}*/
+
+  .user-display-card{
+    width: 95%;
+    padding: 24px 3%;
+  }
+
+  .authentication-card{
+    width: 95%;
+    padding: 24px 3%;
+  }
+}

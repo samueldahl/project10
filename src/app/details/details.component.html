@@ -1,0 +1,75 @@
+<div class="details-card-container">
+  <div class="image-list-container">
+    <div class = "title">
+      <h2 class="mat-title">{{recipeData.recipeName}}</h2>
+    </div>
+
+    <div class = "subtitle">
+      <mat-list>
+        <mat-list-item>
+          <h3 class="mat-subheading-2">Recipe made by {{recipeData.recipeCreator}}</h3>
+        </mat-list-item>
+        <mat-list-item>
+          <h4 class="mat-subheading-1"><em>posted from {{recipeData.recipePoster}} at {{recipeData.datePosted | dateFormatter}}</em></h4>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <mat-divider></mat-divider>
+
+    <div class ="image-ingredients-container">
+      <div class="image-container">
+        <img [src]="recipeData.photoURL">
+      </div>
+
+      <div class = "ingredients-container">
+        <div class="ingredients-title">
+          <h3 class="mat-subheading-1">Ingredients</h3>
+        </div>
+
+        <mat-divider class="ingredients-divider"></mat-divider>
+        <div class="ingredients-list">
+          <mat-list>
+            <mat-list-item *ngFor="let ingredient of recipeData.ingredients">
+              {{ingredient}}
+            </mat-list-item>
+          </mat-list>
+        </div>
+      </div>
+    </div>
+
+    <mat-divider></mat-divider>
+  </div>
+
+
+  <div class = "directions">
+    <p class="mat-body-1"> {{recipeData.instructions}} </p>
+  </div>
+
+  <button class="back-button" mat-raised-button color="primary" routerLink="/recipes">Back</button>
+</div>
+
+<mat-card *ngIf="auth.user | async as user">
+  <mat-form-field>
+    <input [(ngModel)]="commentContent" matInput placeholder="add a comment">
+  </mat-form-field>
+  <button mat-button color="primary" (click)="postComment(recipeData.id, user.displayName, user.email)">Post</button>
+</mat-card>
+
+<mat-card *ngFor="let comment of comments">
+  <mat-card-title>
+    {{comment.poster}}
+  </mat-card-title>
+  <mat-card-subtitle>
+    Posted {{comment.datePosted | dateFormatter : true}}
+  </mat-card-subtitle>
+  <mat-card-content>
+    {{comment.content}}
+  </mat-card-content>
+  <ng-container *ngIf="auth.user | async as user">
+    <mat-card-actions *ngIf="user.email === comment.posterEmail || user.email === recipeData.recipePoster">
+      <button mat-button color="warn" (click)="recipeService.deleteComment(recipeData.id, comment.id)">Delete</button>
+    </mat-card-actions>
+  </ng-container>
+</mat-card>
+
+

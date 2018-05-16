@@ -1,0 +1,35 @@
+mat-toolbar{
+  display: flex;
+  justify-content: space-between;
+}
+
+span {
+  margin: 5px;
+  padding: 5px;
+}
+
+
+span:hover{
+  cursor:pointer;
+}
+
+input{
+  height: 25px;
+  width: 150px;
+}
+
+.end{
+  justify-self: flex-end;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.end *{
+  margin: 4px;
+}
+
+.main-wrapper{
+  height: 100%;
+  width: 100%;
+}
