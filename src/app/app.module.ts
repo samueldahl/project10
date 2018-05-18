@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+//All things relating to firebase will have to be removed, and replaced with modules that refrence mongodb.
+//
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
@@ -17,6 +19,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from './services/auth.service';
 import {AngularFireModule} from 'angularfire2';
+// TODO THis shal be replaced n stuff
 import {environment} from '../environments/environment';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
