@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 //All things relating to firebase will have to be removed, and replaced with modules that refrence mongodb.
-//
+// On a scale from 0 to :deep_fried_dab: I'd say this is a solid 7.887654321
+import {mongodb} from 'mongodb';
+
 
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome/welcome.component';
